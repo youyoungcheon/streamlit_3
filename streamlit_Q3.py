@@ -122,4 +122,15 @@ axs[1, 0].set_xlabel("SUNACTIVITY")
 
 # (d) 산점도 + 회귀선
 years = df_filtered["YEAR"]
-axs[1, 1].scatter(years, sunactivity
+axs[1, 1].scatter(years, sunactivity, s=10, alpha=0.5, label='Data Points')
+coef = np.polyfit(years, sunactivity, 1)
+trend = np.poly1d(coef)
+axs[1, 1].plot(years, trend(years), color='red', linewidth=2, label='Trend Line')
+axs[1, 1].set_title("Trend of Sunspot Activity")
+axs[1, 1].set_xlabel("Year")
+axs[1, 1].set_ylabel("SUNACTIVITY")
+axs[1, 1].legend()
+axs[1, 1].grid(True)
+
+plt.tight_layout(rect=[0, 0.03, 1, 0.95])
+st.pyplot(fig2)
