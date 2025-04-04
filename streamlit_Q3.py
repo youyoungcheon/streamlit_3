@@ -3,7 +3,6 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import skew, kurtosis, gaussian_kde
-import statsmodels.api as sm
 
 # -----------------------------------
 # 🌞 페이지 설정
@@ -14,11 +13,13 @@ st.title("🌞 Interactively Explore Sunspot Activity Data")
 # -----------------------------------
 # 📊 데이터 로딩 및 전처리
 # -----------------------------------
-sunspots = sm.datasets.sunspots.load_pandas()
-df = sunspots.data
+df = pd.read_csv("../sunspots.csv")
+df['y'] = df['SUNACTIVITY']
 df["YEAR"] = df["YEAR"].astype(int)
 df["date"] = pd.to_datetime(df["YEAR"], format="%Y")
-df = df.set_index("date").sort_index()
+df = df.set_index("date")
+df = df.sort_index()
+sunactivity = df["y"].dropna()
 
 # -----------------------------------
 # 🧭 사이드바 - 설정 UI
