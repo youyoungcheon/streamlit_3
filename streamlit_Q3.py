@@ -13,7 +13,7 @@ st.title("🌞 Interactively Explore Sunspot Activity Data")
 # -----------------------------------
 # 📊 데이터 로딩 및 전처리
 # -----------------------------------
-df = pd.read_csv("../sunspots.csv")
+df = pd.read_csv("./sunspots.csv")
 df['y'] = df['SUNACTIVITY']
 df["YEAR"] = df["YEAR"].astype(int)
 df["date"] = pd.to_datetime(df["YEAR"], format="%Y")
